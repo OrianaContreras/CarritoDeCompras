@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 *{
     padding: 0;
     margin: 0;
-   /* border: 0.5px solid black; */
-    
+    font-family: 'Roboto', sans-serif;
     background-color: #005274;
     
 }
@@ -50,24 +51,45 @@ height: 50vh;
     border-radius: 50px;
 }
 
-
 .element{
     height: 25%;
     padding: 5%;
     box-shadow: 2px 2px 5px rgb(255, 255, 255);
     border-radius: 10px;
-}
-
-.element{
+    /* max-width: 150px;
+    max-height: 300px; */
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    margin-top: 5%;
+
+}
+
+.title{
+    padding-top: 5%;
+    max-width: 60%;
+}
+
+.btnAgregarAlCarrito{
+    margin-top: 10%;
+    background-color: #008FAD;
+    width: 100%; 
+    margin: 5px;
+}
+
+.roll{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+
 }
 
 footer{
     padding: 5%;
     background-color: #008FAD;
+    align-content: flex-end;
 }
 
 button{
