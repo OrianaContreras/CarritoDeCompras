@@ -1,12 +1,13 @@
 const urlBaseApi = 'http://www.omdbapi.com/?' ;
 const apiKey = 'apikey=91fea356';
 const urlApi = urlBaseApi + apiKey + '&s=harry potter';
+
 const movie = document.getElementById('movie');
-const formBusqueda = document.getElementById('fromBusqueda');
+const formBusqueda = document.getElementById('formBusqueda');
 const inputBusqueda = document.getElementById('inputBusqueda');
-const urlSearch = 'http://img.omdbapi.com/?'+apiKey+'&s='+ ` ${inputBusqueda} `;
+const urlSearch = 'http://www.omdbapi.com/?'+apiKey+'&s=';
 getElements(urlApi);
-//getElements(urlSearch);
+
 function getElements(url){
 
     fetch(url).then(response => response.json()).then(data => {
@@ -41,4 +42,13 @@ function showElements(data){
         movie.appendChild(movieElement);
     })
 }
+
+formBusqueda.addEventListener('submit', (element) => {
+    element.preventDefault();
+    const buscarTermino = inputBusqueda.value;
+
+    if(buscarTermino){
+        getElements(urlSearch + buscarTermino)
+    }
+})
 

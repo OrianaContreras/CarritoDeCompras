@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300,500&display=swap');
 
 *{
     padding: 0;
@@ -37,7 +37,7 @@ height: 50vh;
     justify-content: space-around;
 }
 
-.inputBuscar{
+.inputBusqueda{
     width: 100%;
     height: 50%;
     background-color: #00517483;
@@ -52,30 +52,39 @@ height: 50vh;
 }
 
 .element{
-    height: 25%;
+    height: 500px;
     padding: 5%;
     box-shadow: 2px 2px 5px rgb(255, 255, 255);
     border-radius: 10px;
-    /* max-width: 150px;
-    max-height: 300px; */
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    margin-top: 5%;
+    margin: 1rem;
+    
+    width: 300px;
 
 }
 
+.element img{
+    width: 80%;
+}
 .title{
     padding-top: 5%;
     max-width: 60%;
+    font-family: ;
+    color: aliceblue;
 }
 
 .btnAgregarAlCarrito{
     margin-top: 10%;
-    background-color: #008FAD;
-    width: 100%; 
-    margin: 5px;
+    background-color: #10adcc;
+    width: 300px; 
+    height: 50px;
+    margin: 10px;
+    font-size: 20px;
+    border-radius: 50px;
+    color: aliceblue;
 }
 
 .roll{
@@ -94,8 +103,8 @@ footer{
 
 button{
     justify-content: center;
-    width: 25%;
-    height: 25%;
+    /* width: 25%;
+    height: 25%; */
 }
 
 
