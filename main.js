@@ -104,18 +104,18 @@ movie.addEventListener('click', element =>{
         footerTabla()
     }
         const footerTabla = () =>{
-            footerTabla.innerHTML = '';
-            if(Object.keys(carrito).length == 0){
+            footer.innerHTML = '';
+            if(Object.keys(carrito).length === 0){
                 footer.innerHTML=`
                 <th scope="row" colspan="5">Carrito vacío con innerHTML</th>
                 `
             return 
             }
             const cantidadDeProductosAgregados = Object.values(carrito).reduce((acc,{cantidad}) => acc + cantidad,0)
-            templateFooter.querySelector('td')[0].textContent = cantidadDeProductosAgregados
+            templateFooter.querySelectorAll('td')[0].textContent = cantidadDeProductosAgregados
             const clone = templateFooter.cloneNode(true) 
             fragment.appendChild(clone)
-            footerTabla.appendChild(fragment)
+            footer.appendChild(fragment)
 
             const btnVaciarCarrito = document.getElementById('vaciar-carrito')
             btnVaciarCarrito.addEventListener('click',() => {
@@ -125,28 +125,28 @@ movie.addEventListener('click', element =>{
             })   
         }
     
-    items.addEventListener('click', e => { btnAumentarDisminuir(e) })
+    movie.addEventListener('click', element => { btnAumentarDisminuir(element) })
 
-    const btnAccion = element => {
+    const btnAumentarDisminuir = element => {
         if(element.target.classList.contains('btn-info')){
-            console.log(carrito[element.target.dataset.id])
+            console.log(carrito[element.target.dataset.index])
         const producto = carrito[element.targent.dataset.id]
-        producto.cantidad = carrito[element.target.dataset.id].cantidad + 1
-        carrito[element.target.dataset.id] = {...producto}
+        producto.cantidad = carrito[element.target.dataset.index].cantidad + 1
+        carrito[element.target.dataset.index] = {...producto}
         mostrarCarrito()
 
 
-        if (e.target.classList.contains('btn-danger')) {
-            const producto = carrito[e.target.dataset.id]
+        if (element.target.classList.contains('btn-danger')) {
+            const producto = carrito[element.target.dataset.index]
             producto.cantidad--
             if (producto.cantidad === 0) {
-                delete carrito[e.target.dataset.id]
+                delete carrito[e.target.dataset.index]
             } else {
-                carrito[e.target.dataset.id] = {...producto}
+                carrito[e.target.dataset.index] = {...producto}
             }
             mostrarCarrito()
         }
-        e.stopPropagation()
+        element.stopPropagation()
         }
 
     }

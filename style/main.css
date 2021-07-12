@@ -35,24 +35,14 @@ form{
 
 }
 
-.btnCarrito{
-    width: 20%;
-    margin-right: 25px;
-    justify-content: flex-end;
+table{
+    width: 100%;
+    background-color: aliceblue;
+    padding: 2%;
     border-radius: 50px;
-    background-color: #67CBDB;
-
 }
-
-.bgCarrito{
-    background-color: #67CBDB;
-
-}
-
-.sizeCarrito{
-    max-width: 30px;
-    min-width: 20px;
-
+.table{
+    background-color: aliceblue;
 }
 
 main{
