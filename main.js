@@ -6,8 +6,10 @@ const movie = document.getElementById('movie');
 const formBusqueda = document.getElementById('formBusqueda');
 const inputBusqueda = document.getElementById('inputBusqueda');
 const urlSearch = 'http://www.omdbapi.com/?'+apiKey+'&s=';
-// const tablaProductosSeleccionados = document.getElementById('tablaProductosSeleccionados').content
+const templateCarrito = document.getElementById('template-carrito').content
+const templateFooter = document.getElementById('template-footer').content
 const fragment = document.createDocumentFragment();
+const items = document.getElementById('items')
 
 let carrito = [];
 getElements(urlApi);
@@ -69,39 +71,82 @@ movie.addEventListener('click', element =>{
     }
 
     const setCarrito = element =>{
-        const productoSaleccionado = {
+        const productoSeleccionado = {
             title:element.querySelector('.titleProducto').innerText,
             index:parseInt(element.querySelector('.btnAgregarAlCarrito').id),
             img:element.querySelector('.img').src,
             cantidad:1,
         }
-        if(carrito.hasOwnProperty(productoSaleccionado.index)){
-            productoSaleccionado.cantidad = carrito[productoSaleccionado.index].cantidad + 1
+        if(carrito.hasOwnProperty(productoSeleccionado.index)){
+            productoSeleccionado.cantidad = carrito[productoSeleccionado.index].cantidad + 1
         }
-        carrito[productoSaleccionado.index] = {...productoSaleccionado}
-        console.log(carrito[productoSaleccionado.index])
-        // mostrarCarrito()
+        carrito[productoSeleccionado.index] = {...productoSeleccionado}
+        console.log(carrito[productoSeleccionado.index])
+        mostrarCarrito()
     }
     
-    // const mostrarCarrito = () => {
-    //     innerHTML ='';
-    //     Object.values(carrito).forEach(productoSaleccionado => {
-    //         tablaProductosSeleccionados.querySelector('th').textContent = productoSaleccionado.id;
-    //         tablaProductosSeleccionados.querySelector('td').textContent = productoSaleccionado.title;
-    //         tablaProductosSeleccionados.querySelector('th').textContent = productoSaleccionado.cantidad;
-
-    //         const clone = tablaProductosSeleccionados.cloneNode(true);
-    //         fragment.appendChild(clone);
-
-    //         if(Object.keys(carrito).length == 0){
-    //             footer.innerHTML=`
-    //             <th scope="row" colspan="5">Carrito vacío con innerHTML</th>
-    //             `
-    //             return
-                
-    //         }
+    const mostrarCarrito = () => {
+        innerHTML ='';
+        Object.values(carrito).forEach(productoSeleccionado => {
+        templateCarrito.querySelector('th').textContent = productoSeleccionado.index;
+        templateCarrito.querySelectorAll('td')[0].textContent = productoSeleccionado.title;
+        templateCarrito.querySelectorAll('td')[1].textContent = productoSeleccionado.cantidad;
+        templateCarrito.querySelector('.btn-info').dataset.index = productoSeleccionado.index
+        templateCarrito.querySelector('.btn-danger').dataset.index = productoSeleccionado.index;
 
 
-    //     })
-    // }
+            const clone = templateCarrito.cloneNode(true);
+            fragment.appendChild(clone);
+        })
 
+        items.appendChild(fragment)
+
+        footerTabla()
+    }
+        const footerTabla = () =>{
+            footerTabla.innerHTML = '';
+            if(Object.keys(carrito).length == 0){
+                footer.innerHTML=`
+                <th scope="row" colspan="5">Carrito vacío con innerHTML</th>
+                `
+            return 
+            }
+            const cantidadDeProductosAgregados = Object.values(carrito).reduce((acc,{cantidad}) => acc + cantidad,0)
+            templateFooter.querySelector('td')[0].textContent = cantidadDeProductosAgregados
+            const clone = templateFooter.cloneNode(true) 
+            fragment.appendChild(clone)
+            footerTabla.appendChild(fragment)
+
+            const btnVaciarCarrito = document.getElementById('vaciar-carrito')
+            btnVaciarCarrito.addEventListener('click',() => {
+                carrito = {}
+            mostrarCarrito()
+
+            })   
+        }
+    
+    items.addEventListener('click', e => { btnAumentarDisminuir(e) })
+
+    const btnAccion = element => {
+        if(element.target.classList.contains('btn-info')){
+            console.log(carrito[element.target.dataset.id])
+        const producto = carrito[element.targent.dataset.id]
+        producto.cantidad = carrito[element.target.dataset.id].cantidad + 1
+        carrito[element.target.dataset.id] = {...producto}
+        mostrarCarrito()
+
+
+        if (e.target.classList.contains('btn-danger')) {
+            const producto = carrito[e.target.dataset.id]
+            producto.cantidad--
+            if (producto.cantidad === 0) {
+                delete carrito[e.target.dataset.id]
+            } else {
+                carrito[e.target.dataset.id] = {...producto}
+            }
+            mostrarCarrito()
+        }
+        e.stopPropagation()
+        }
+
+    }

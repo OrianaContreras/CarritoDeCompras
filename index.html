@@ -16,10 +16,85 @@
                     <input class="inputBusqueda" type="text" placeholder="Busque las películas que desee:
                     " id="inputBusqueda">
                 </form>
-                <button class="btnCarrito"> <a class="bgCarrito" href="carritoDeCompras.html"><img class="bgCarrito sizeCarrito" src="assets/img/outline_shopping_cart_white_24dp.png" alt=""></a></button>
+                <!-- <button class="btnCarrito"> <a class="bgCarrito" href="carritoDeCompras.html"><img class="bgCarrito sizeCarrito" src="assets/img/outline_shopping_cart_white_24dp.png" alt=""></a></button> -->
             </nav>
         </header>
         <main>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Título</th>
+                            <td>
+                                
+                            </td>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="items"></tbody>
+                    <tfoot>
+                        <tr id="footer">
+                            <th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>
+                        </tr>
+                        </tfoot>
+                </table>
+            
+                <template id="template-footer">
+                    <th scope="row" colspan="2">Total productos</th>
+                    <td>10</td>
+                    <td>
+                        <button class="btn btn-danger" id="vaciar-carrito">
+                            vaciar todo
+                        </button>
+                    </td>
+                </template>
+                
+                <template id="template-carrito">
+                    <tr>
+                        <th scope="row">id</th>
+                        <td>Café</td>
+                        <td>1</td>
+                        <td>
+                            <button class="btn btn-info">
+                                +
+                            </button>
+                            <button class="btn btn-danger">
+                                -
+                            </button>
+                        </td>
+                    </tr>
+                </template>
+                <!-- <table class="table" id="tablaProductosSeleccionados">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Acción</th>
+                        <th scope="col"></th>
+                        <th scope="row">id</th>
+                            <td>Café</td>
+                            <td>1</td>
+                            <td>
+                                <button class="btn btn-info ">
+                                    +
+                                </button>
+                                <button class="btn btn-danger">
+                                    -
+                                </button>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody id="items"></tbody>
+                    <tfoot>
+                        <tr id="footer">
+                        <th scope="row" colspan="5">Carrito se encuentra vacío - Agregue algún producto si lo desea!</th>
+                        </tr>
+                    </tfoot>
+                </table> -->
+            </div>
             <section id="movie" class="roll">
                 <!-- <div class="element">
                     <img src="assets/img/shoppingCar.ico" alt="">
@@ -35,7 +110,9 @@
             </section>
             <div class="footer">
                 <footer>
-                    <ul><li></li></ul>
+                    <ul><li>
+                        oacm
+                    </li></ul>
                 </footer>
             </div>
         </main>
