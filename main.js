@@ -94,6 +94,7 @@ movie.addEventListener('click', element =>{
         templateCarrito.querySelectorAll('td')[1].textContent = productoSeleccionado.cantidad;
         templateCarrito.querySelector('.btn-info').dataset.index = productoSeleccionado.index
         templateCarrito.querySelector('.btn-danger').dataset.index = productoSeleccionado.index;
+        templateCarrito.querySelectorAll('td')[1].dataset.class = 'table';
 
 
             const clone = templateCarrito.cloneNode(true);
@@ -108,7 +109,7 @@ movie.addEventListener('click', element =>{
             footer.innerHTML = '';
             if(Object.keys(carrito).length === 0){
                 footer.innerHTML=`
-                <th scope="row" colspan="5">Carrito vacío con innerHTML</th>
+                <th scope="row" colspan="5">Carrito vacío</th>
                 `
             return 
             }
