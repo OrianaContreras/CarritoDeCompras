@@ -92,9 +92,9 @@ movie.addEventListener('click', element =>{
         templateCarrito.querySelector('th').textContent = productoSeleccionado.index;
         templateCarrito.querySelectorAll('td')[0].textContent = productoSeleccionado.title;
         templateCarrito.querySelectorAll('td')[1].textContent = productoSeleccionado.cantidad;
-        templateCarrito.querySelector('.btn-info').dataset.index = productoSeleccionado.index
+        templateCarrito.querySelector('.btn-info').dataset.index = productoSeleccionado.index;
         templateCarrito.querySelector('.btn-danger').dataset.index = productoSeleccionado.index;
-        templateCarrito.querySelectorAll('td')[1].dataset.class = 'table';
+        console.log(templateCarrito.querySelector('.btn-info').dataset.index = productoSeleccionado.index)
 
 
             const clone = templateCarrito.cloneNode(true);
@@ -127,28 +127,31 @@ movie.addEventListener('click', element =>{
             })   
         }
     
-    movie.addEventListener('click', element => { btnAumentarDisminuir(element) })
+    items.addEventListener('click', element => { btnAumentarDisminuir(element) })
 
-    const btnAumentarDisminuir = element => {
-        if(element.target.classList.contains('btn-info')){
-            console.log(carrito[element.target.dataset.index])
-        const producto = carrito[element.targent.dataset.id]
-        producto.cantidad = carrito[element.target.dataset.index].cantidad + 1
+    let btnAumentarDisminuir = element => {
+       
+        if(element.target.className == 'btn-info'){
+            console.log('estoy dentro del if')
+        let producto = carrito[element.target.dataset.index]
+        producto.cantidad = producto.cantidad + 1
+        console.log(producto)
         carrito[element.target.dataset.index] = {...producto}
         mostrarCarrito()
+        }
 
-
-        if (element.target.classList.contains('btn-danger')) {
-            const producto = carrito[element.target.dataset.index]
-            producto.cantidad--
+        if (element.target.className == 'btn-danger'){
+            
+            let producto = carrito[element.target.dataset.index]
+            producto.cantidad = producto.cantidad - 1
             if (producto.cantidad === 0) {
-                delete carrito[e.target.dataset.index]
+                delete carrito[element.target.dataset.index]
             } else {
-                carrito[e.target.dataset.index] = {...producto}
+                carrito[element.target.dataset.index] = {...producto}
             }
             mostrarCarrito()
         }
-        element.stopPropagation()
-        }
 
     }
+
+    

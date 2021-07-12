@@ -113,6 +113,17 @@ background-color: aliceblue;
 
 }
 
+.btn-info{
+    width: 20px;
+}
+
+.btn-danger{
+    width: 20px;
+}
+#vaciar-carrito{
+    padding: 2%;
+}
+
 .element img{
     width: 80%;
 }
