@@ -25,7 +25,7 @@ function showElements(data){
 
     movie.innerHTML='';
 
-    data.forEach(element => {
+    data.forEach(function callback(element, index) {
         const {Title, Poster, Year, imdbID} = element; 
         const movieElement = document.createElement('div');
         movieElement.classList.add('element');
@@ -39,14 +39,14 @@ function showElements(data){
                 <h3>${Year}</h3>
             </div>
             <div>
-            <button id="btnAgregarAlCarrito" class="btnAgregarAlCarrito" >
+            <button id="${index}" class="btnAgregarAlCarrito" >
             Agregar
             </button>
             </div>
         `
-
         movie.appendChild(movieElement);
     })
+
 }
 
 formBusqueda.addEventListener('submit', (element) => {
@@ -59,34 +59,27 @@ formBusqueda.addEventListener('submit', (element) => {
 })
 
 movie.addEventListener('click', element =>{
-
-    console.log(element)
     addCarrito(element)
 })
 
     const addCarrito = element =>{
         if (element.target.classList.contains('btnAgregarAlCarrito')){
-            setCarrito(element.target.parentElement)
+            setCarrito(element.target.parentElement.parentElement)
         }
-
-
     }
 
     const setCarrito = element =>{
         const productoSaleccionado = {
-            title:element.querySelector('.title'),
-            id:element.querySelector('.btnAgregarAlCarrito'),
-            img:element.querySelector('.img'),
+            title:element.querySelector('.titleProducto').innerText,
+            index:parseInt(element.querySelector('.btnAgregarAlCarrito').id),
+            img:element.querySelector('.img').src,
             cantidad:1,
-
         }
-
-        // if(carrito.hasOwnProperty(productoSaleccionado.id)){
-        //     productoSaleccionado.cantidad = carrito[productoSaleccionado.id].cantidad + 1
-        // }
-
-        // carrito[productoSaleccionado.id] = {...productoSaleccionado}
-
+        if(carrito.hasOwnProperty(productoSaleccionado.index)){
+            productoSaleccionado.cantidad = carrito[productoSaleccionado.index].cantidad + 1
+        }
+        carrito[productoSaleccionado.index] = {...productoSaleccionado}
+        console.log(carrito[productoSaleccionado.index])
         // mostrarCarrito()
     }
     
