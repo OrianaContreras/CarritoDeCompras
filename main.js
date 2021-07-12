@@ -81,12 +81,13 @@ movie.addEventListener('click', element =>{
             productoSeleccionado.cantidad = carrito[productoSeleccionado.index].cantidad + 1
         }
         carrito[productoSeleccionado.index] = {...productoSeleccionado}
-        console.log(carrito[productoSeleccionado.index])
+        console.log(carrito)
         mostrarCarrito()
     }
     
     const mostrarCarrito = () => {
-        innerHTML ='';
+        
+        items.innerHTML ='';
         Object.values(carrito).forEach(productoSeleccionado => {
         templateCarrito.querySelector('th').textContent = productoSeleccionado.index;
         templateCarrito.querySelectorAll('td')[0].textContent = productoSeleccionado.title;
